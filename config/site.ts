@@ -1,13 +1,15 @@
-import { SiteConfig } from "types"
-
-export const siteConfig: SiteConfig = {
-  name: "Taxonomy",
-  description:
-    "An open source application built using the new router, server components and everything new in Next.js 13.",
-  url: "https://tx.shadcn.com",
-  ogImage: "https://tx.shadcn.com/og.jpg",
+export const siteConfig = {
+  name: "VISIO-OS",
+  description: "The operating system for clarity, performance, and human evolution.",
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/taxonomy",
+    github: "https://github.com/natuvisio-sudo/natuvisio-visio-os",
   },
+  mainNav: [
+    { title: "Features", href: "/features" },
+    { title: "Systems", href: "/systems" },
+    { title: "Modules", href: "/modules" },
+    { title: "Pricing", href: "/pricing" },
+  ],
 }
+
+export type SiteConfig = typeof siteConfig

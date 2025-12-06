@@ -1,40 +1,97 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ----------------------------------------------------------------------
+# 🎯 VISIO-OS .gitignore Configuration
+# Elite Web SuperApp Standard (Next.js 14, pnpm, Vercel, Contentlayer)
+# ----------------------------------------------------------------------
 
-# dependencies
+# --------------------------------
+# 1. CORE DEPENDENCIES & LOCKS
+# --------------------------------
+
+# Node module directory (Standard)
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# pnpm-specific files
+/.pnp.*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-.env
+# Yarn v3 / Plug-and-Play (Excluding necessary dependencies)
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
-# vercel
+# --------------------------------
+# 2. NEXT.JS / VERCEL BUILD OUTPUT
+# --------------------------------
+
+# Next.js build output (Vercel deployment target)
+/.next/
+/out/
+/build
+
+# Vercel deployment cache/config
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# --------------------------------
+# 3. CONTENT & DOCUMENTATION
+# --------------------------------
 
-.vscode
-.contentlayer
+# Contentlayer generated files (Type definitions and data)
+/.contentlayer/
+*.tsbuildinfo
+
+# MDX/Docs cache if used by external tools
+.docusaurus
+.temp
+.cache
+
+# --------------------------------
+# 4. TESTING & DEBUGGING
+# --------------------------------
+
+# Test coverage reports (Jest/Vitest/Cypress)
+/coverage
+*.lcov
+.nyc_output
+
+# Runtime and Diagnostic logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# --------------------------------
+# 5. ENVIRONMENT & CONFIGURATION
+# --------------------------------
+
+# Local environment files (Critical for security, must exclude .env)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# TypeScript compiler cache
+*.tsbuildinfo
+
+# Eslint / Stylelint caches
+.eslintcache
+.stylelintcache
+
+# --------------------------------
+# 6. EDITOR & OS Specific
+# --------------------------------
+
+# Visual Studio Code cache/config (Optional, depends on team preference)
+.vscode/
+
+# OS X files
+.DS_Store
+
+# Misc binary/temporary files
+*.pem
+*.tgz
+npm-debug.log*

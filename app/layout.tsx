@@ -1,53 +1,48 @@
-import { Inter as FontSans } from "next/font/google"
-import localFont from "next/font/local"
+import "@/styles/globals.css"; // Global styles and Tailwind CSS imports
+import { Inter as FontSans } from "next/font/google"; // Recommended font import
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
+import { ThemeProvider } from "@/components/theme-provider"; // Client component wrapper for dark mode
+import { Toaster } from "@/components/ui/toaster"; // Shadcn/ui toast component
 
-import "@/styles/globals.css"
-import { siteConfig } from "@/config/site"
-import { absoluteUrl, cn } from "@/lib/utils"
-import { Toaster } from "@/components/ui/toaster"
-import { Analytics } from "@/components/analytics"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
-
+// --- FONT CONFIGURATION ---
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-})
+});
 
-// Font files can be colocated inside of `pages`
-const fontHeading = localFont({
-  src: "../assets/fonts/CalSans-SemiBold.woff2",
-  variable: "--font-heading",
-})
+// ------------------------------------------------------------------
+// 1. ELITE MANDATE FIX: Metadata and Viewport Exports (RSC)
+// ------------------------------------------------------------------
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
+// 🎯 FIX A: Add viewport export to handle themeColor and align with Next.js 16
+export const viewport = {
+  themeColor: '#000000', // Set the primary theme color for mobile browsers
+  initialScale: 1,
+  width: 'device-width',
+};
 
+// 🎯 FIX B: Define Metadata for SEO and Social Sharing (RSC)
 export const metadata = {
+  // CRITICAL FIX: Define the base URL for correct absolute URL generation (e.g., for Open Graph images)
+  metadataBase: new URL('https://visio-os.com'), 
+  
+  // Base SEO Configuration
   title: {
-    default: siteConfig.name,
+    default: siteConfig.name, // VISIO-OS: Human Clarity, Engineered.
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Radix UI",
-  ],
+
+  // Social Sharing and PWA Configuration
+  keywords: ["clarity", "wellness", "performance", "Next.js", "SaaS", "ai", "typescript"],
   authors: [
     {
-      name: "shadcn",
-      url: "https://shadcn.com",
+      name: siteConfig.creatorName,
+      url: siteConfig.links.github,
     },
   ],
-  creator: "shadcn",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  creator: siteConfig.creatorName,
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -60,35 +55,37 @@ export const metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
-    creator: "@shadcn",
+    images: [`${siteConfig.url}/og-image.jpg`],
+    creator: siteConfig.creatorTwitter,
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: `${siteConfig.url}/site.webmanifest`,
-}
+};
 
-export default function RootLayout({ children }: RootLayoutProps) {
+// ------------------------------------------------------------------
+// 2. ROOT LAYOUT COMPONENT
+// ------------------------------------------------------------------
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-          fontHeading.variable
+          fontSans.variable
         )}
       >
+        {/* The ThemeProvider handles dark/light mode and must wrap the entire app */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Analytics />
-          <Toaster />
-          <TailwindIndicator />
+          {/* NOTE: We assume SessionProvider/AuthProvider will wrap children here */}
+          {children} 
         </ThemeProvider>
+        
+        {/* Global Toast Notifications */}
+        <Toaster />
       </body>
     </html>
-  )
+  );
 }

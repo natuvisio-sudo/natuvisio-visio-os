@@ -1,90 +1,85 @@
-# Taxonomy
+# 💡 VISIO-OS: A Structured Operating System for Human Clarity
 
-An open source application built using the new router, server components and everything new in Next.js 13.
+**Project Name:** `natuvisio-visio-os`
 
-> **Warning**
-> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@shadcn](https://twitter.com/shadcn).
-> See the roadmap below.
+> **Project Mission:** VISIO OS is a creator-first operating platform designed for **human clarity, well-being, and high-performance thinking**. This project serves as the foundational architecture for NATUVISIO's suite of digital evolution products.
 
-## About this project
+## ✨ Engineering Philosophy: Top 1% Standard
 
-This project as an experiment to see how a modern app (with features like authentication, subscriptions, API routes, static pages for docs ...etc) would work in Next.js 13 and server components.
+This system is built for **predictability, scalability, and deterministic behavior**. We enforce **strong typing** (TypeScript strict mode), **atomic modularity**, **zero console errors**, and target **Lighthouse 95+ scores** with **60 FPS UI motion**.
 
-**This is not a starter template.**
+---
 
-A few people have asked me to turn this into a starter. I think we could do that once the new features are out of beta.
+## 🏗️ Core Architectural Features
 
-## Note on Performance
+VISIO-OS leverages the **Next.js 14 App Router** and **React Server Components (RSC)** for a robust, server-first platform.
 
-> **Warning**
-> This app is using the unstable releases for Next.js 13 and React 18. The new router and app dir is still in beta and not production-ready.
-> **Expect some performance hits when testing the dashboard**.
-> If you see something broken, you can ping me [@shadcn](https://twitter.com/shadcn).
+| Layer | Key Technology | Engineering Focus |
+| :--- | :--- | :--- |
+| **Frontend/UI** | **Next.js 14, TypeScript, shadcn/ui + Radix, Tailwind CSS** | Minimal UI (Apple-grade clarity), ARIA-compliant accessibility. |
+| **Data/Backend** | **Next.js Route Handlers, Prisma ORM, PostgreSQL (PlanetScale), Edge Runtime** | Low-latency APIs, resilient data access. |
+| **Authentication** | **NextAuth.js v5 (or Clerk/Supabase), Passwordless Flow, RBAC** | Enterprise-grade security and frictionless onboarding. |
+| **Payments** | **PAYTR Recurring Payment API** | Strategic integration using secure Hash Validation and Replay Protection. |
+| **Content** | **MDX & Contentlayer** | Type-safe content layer for docs, rituals, and content modules. |
+| **DevOps/Quality**| **Vercel, GitHub Actions, ESLint/Prettier** | Performance instrumentation, strict code quality, reliable CI/CD. |
 
-## Features
+---
 
-- New `/app` dir,
-- Routing, Layouts, Nested Layouts and Layout Groups
-- Data Fetching, Caching and Mutation
-- Loading UI
-- Route handlers
-- Metadata files
-- Server and Client Components
-- API Routes and Middlewares
-- Authentication using **NextAuth.js**
-- ORM using **Prisma**
-- Database on **PlanetScale**
-- UI Components built using **Radix UI**
-- Documentation and blog using **MDX** and **Contentlayer**
-- Subscriptions using **Stripe**
-- Styled using **Tailwind CSS**
-- Validations using **Zod**
-- Written in **TypeScript**
+## 🚀 VISIO-OS Development Roadmap
 
-## Roadmap
+The following modules represent the current development targets for the platform:
 
-- [x] ~Add MDX support for basic pages~
-- [x] ~Build marketing pages~
-- [x] ~Subscriptions using Stripe~
-- [x] ~Responsive styles~
-- [x] ~Add OG image for blog using @vercel/og~
-- [x] Dark mode
+- [x] Build Premium Landing System (Marketing Pages)
+- [x] Responsive styles & Dark mode
+- [ ] **Modular Navigation Shell** (MainNav + Sidebar)
+- [ ] **User Dashboard OS View** (Systems, Rituals, Processes)
+- [ ] **Subscription System** (PAYTR Checkout and Callback handling)
+- [ ] **Personal Evolution Tracker** (Daily Logs, Tasks)
+- [ ] **Community Module** (Topics, Posts, Comments)
+- [ ] **AI Co-pilot Integration** (Semantic Search, Agent Workflows)
+- [ ] Marketplace Integration Layer for NATUVISIO products
 
-## Known Issues
+---
 
-A list of things not working right now:
+## 🐛 Known Issues & Debugging Notes
 
-1. ~GitHub authentication (use email)~
-2. ~[Prisma: Error: ENOENT: no such file or directory, open '/var/task/.next/server/chunks/schema.prisma'](https://github.com/prisma/prisma/issues/16117)~
-3. ~[Next.js 13: Client side navigation does not update head](https://github.com/vercel/next.js/issues/42414)~
-4. [Cannot use opengraph-image.tsx inside catch-all routes](https://github.com/vercel/next.js/issues/48162)
+This section tracks environment and framework instability, particularly related to the underlying older Next.js version (`13.3.2-canary.13`):
 
-## Why not tRPC, Turborepo or X?
+1.  **Fixed:** CommonJS/ESM (`module is not defined`) and `next/image` configuration errors.
+2.  **Fixed:** `Element type is invalid` errors resolved by enforcing **named exports** across all core components (`MainNav`, `MobileNav`, `Icons`).
+3.  **Pending:** Contentlayer might issue warnings on Windows (Requires monitoring).
+4.  **Pending:** OpenGraph image issues inside catch-all routes (Framework limitation).
 
-I might add this later. For now, I want to see how far we can get using Next.js only.
+---
 
-If you have some suggestions, feel free to create an issue.
+## ⚙️ Running VISIO-OS Locally
 
-## Running Locally
+The Developer Experience (DX) is paramount. Ensure these steps are followed for a clean boot.
 
-1. Install dependencies using pnpm:
+1.  **Install Dependencies** (using `pnpm`):
 
-```sh
-pnpm install
-```
+    ```sh
+    pnpm install
+    ```
 
-2. Copy `.env.example` to `.env.local` and update the variables.
+2.  **Configuration:** Copy `.env.example` to `.env.local` and populate all necessary API keys (PAYTR, NextAuth, Database).
 
-```sh
-cp .env.example .env.local
-```
+    ```sh
+    cp .env.example .env.local
+    ```
 
-3. Start the development server:
+3.  **Start the Development Server:**
 
-```sh
-pnpm dev
-```
+    ```sh
+    pnpm dev
+    ```
 
-## License
+4.  **Access:** The application should be reachable at `http://localhost:3000`. If connectivity fails, check for port conflicts or perform a clean build (`rm -rf .next`).
 
-Licensed under the [MIT license](https://github.com/shadcn/taxonomy/blob/main/LICENSE.md).
+---
+
+## 📜 License
+
+Licensed under the **MIT license**. See the root **[LICENSE.md](LICENSE.md)** file for details.
+
+*Note: This project is based on the architectural concepts and foundational code of the [Taxonomy project by @shadcn](https://github.com/shadcn/taxonomy).*
